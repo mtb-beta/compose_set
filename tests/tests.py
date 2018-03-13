@@ -32,3 +32,13 @@ class TestSongCompose(unittest.TestCase):
         song_name = "作った曲の名前"
         song = compose_set.create_song(song_name)
         self.assertEqual(song.name, song_name)
+
+    def test_add_section(self):
+        """
+        曲の中にセクションを追加できること
+        """
+        import compose_set
+        song = compose_set.create_song()
+        self.assertFalse(song.section)
+        song.add_section()
+        self.assertTrue(song.section)
