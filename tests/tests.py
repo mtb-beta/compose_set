@@ -15,3 +15,11 @@ class TestSongCompose(unittest.TestCase):
         import compose_set
         song = compose_set.create_song()
         self.assertTrue(song)
+
+    def test_create_song(self):
+        """
+        作った曲がSongインスタンスであること
+        """
+        import compose_set
+        song = compose_set.create_song()
+        self.assertIsInstance(song, compose_set.Song)

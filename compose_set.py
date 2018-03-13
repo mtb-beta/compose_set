@@ -1,2 +1,5 @@
 def create_song():
-    return True
+    return Song()
+
+class Song():
+    pass
