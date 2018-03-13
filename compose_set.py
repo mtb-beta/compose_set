@@ -1,5 +1,6 @@
-def create_song():
-    return Song()
+def create_song(name):
+    return Song(name)
 
 class Song():
-    pass
+    def __init__(self, name):
+        self.name = name
