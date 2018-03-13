@@ -16,7 +16,7 @@ class TestSongCompose(unittest.TestCase):
         song = compose_set.create_song()
         self.assertTrue(song)
 
-    def test_create_song(self):
+    def test_create_song_instance(self):
         """
         作った曲がSongインスタンスであること
         """
@@ -24,7 +24,7 @@ class TestSongCompose(unittest.TestCase):
         song = compose_set.create_song()
         self.assertIsInstance(song, compose_set.Song)
 
-    def test_create_song(self):
+    def test_create_song_with_name(self):
         """
         作った曲に名前をつけられること
         """
