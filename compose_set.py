@@ -1,9 +1,11 @@
-def create_song(name="Unknown Song"):
-    return Song(name)
-
 class Song():
-    def __init__(self, name):
+    def __init__(
+            self,
+            name="Unknown Song",
+            thema="UnKnown"
+        ):
         self.name = name
+        self.thema = thema
         self.section = []
 
     def add_section(self):
