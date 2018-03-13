@@ -42,3 +42,12 @@ class TestSongCompose(unittest.TestCase):
         self.assertFalse(song.section)
         song.add_section()
         self.assertTrue(song.section)
+
+    def test_add_section_instance(self):
+        """
+        曲の中に追加したセクションのインスタンスが、Sectionであること
+        """
+        import compose_set
+        song = compose_set.create_song()
+        song.add_section()
+        self.assertIsInstance(song.section[0], compose_set.Section)

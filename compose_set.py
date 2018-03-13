@@ -7,4 +7,7 @@ class Song():
         self.section = []
 
     def add_section(self):
-        self.section.append("section")
+        self.section.append(Section())
+
+class Section():
+    pass
