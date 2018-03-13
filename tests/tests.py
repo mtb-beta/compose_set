@@ -51,3 +51,11 @@ class TestSongCompose(unittest.TestCase):
         song = compose_set.create_song()
         song.add_section()
         self.assertIsInstance(song.section[0], compose_set.Section)
+
+    def test_create_section(self):
+        """
+        Sectionを単体で作成できること
+        """
+        import compose_set
+        section = compose_set.Section()
+        self.assertIsInstance(section, compose_set.Section)

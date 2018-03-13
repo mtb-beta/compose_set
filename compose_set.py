@@ -10,4 +10,5 @@ class Song():
         self.section.append(Section())
 
 class Section():
-    pass
+    def __init__(self, name="Unknown Section"):
+        self.name = name
