@@ -72,7 +72,7 @@ class TestSongCompose(unittest.TestCase):
 
     def test_section_setting_measure(self):
         """
-        Sectionに盛り上がり度合いを設定できること
+        Sectionに小節数を設定できること
         """
         import compose_set
         section = compose_set.Section()
@@ -89,3 +89,14 @@ class TestSongCompose(unittest.TestCase):
         self.assertEqual(section.elevation, 5)
         section.elevation = 10
         self.assertEqual(section.elevation, 10)
+
+    def test_section_setting_beat(self):
+        """
+        Sectionにビートを設定できること
+        """
+        import compose_set
+        section = compose_set.Section()
+        self.assertIsInstance(section.beat, compose_set.Beat)
+        beat_name = "ビートの名前"
+        section.beat = compose_set.Beat(name=beat_name)
+        self.assertEqual(section.beat.name, beat_name)
