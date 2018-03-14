@@ -69,3 +69,13 @@ class TestSongCompose(unittest.TestCase):
         import compose_set
         section = compose_set.Section()
         self.assertIsInstance(section, compose_set.Section)
+
+    def test_section_setting_elevation(self):
+        """
+        Sectionに盛り上がり度合いを設定できること
+        """
+        import compose_set
+        section = compose_set.Section()
+        self.assertEqual(section.elevation, 5)
+        section.elevation = 10
+        self.assertEqual(section.elevation, 10)
