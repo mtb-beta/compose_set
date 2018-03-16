@@ -100,3 +100,12 @@ class TestSongCompose(unittest.TestCase):
         beat_name = "ビートの名前"
         section.beat = compose_set.Beat(name=beat_name)
         self.assertEqual(section.beat.name, beat_name)
+
+    def test_section_setting_chrod(self):
+        """
+        Sectionにコードを数字で設定できること
+        """
+        import compose_set
+        section = compose_set.Section()
+        section.chord_progression.append(1)
+        self.assertIsInstance(section.chord_progression[0], int)

@@ -17,7 +17,9 @@ class Section:
         self.elevation = 5
         self.measure = 8
         self.beat = Beat()
+        self.chord_progression = []
 
 class Beat:
     def __init__(self, name="Unknow Beat"):
         self.name = name
+
