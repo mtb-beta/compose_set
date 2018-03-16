@@ -103,9 +103,16 @@ class TestSongCompose(unittest.TestCase):
 
     def test_section_setting_chrod(self):
         """
-        Sectionにコードを数字で設定できること
+        Sectionにコード進行を入力できること
         """
         import compose_set
         section = compose_set.Section()
-        section.chord_progression.append(1)
-        self.assertIsInstance(section.chord_progression[0], int)
+        section.chord.progress("FM7")
+        self.assertEqual(section.chord.next(), "FM7")
+        section.chord.progress("G7")
+        self.assertEqual(section.chord.next(), "G7")
+        section.chord.progress("Em7")
+        self.assertEqual(section.chord.next(), "Em7")
+        section.chord.progress("Am")
+        self.assertEqual(section.chord.next(), "Am")
+        self.assertEqual(section.chord.progression, ["FM7","G7","Em7","Am"])
