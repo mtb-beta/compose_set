@@ -18,6 +18,37 @@ class Section:
         self.measure = 8
         self.beat = Beat()
         self.chord = ChordManager()
+        self.instrument = InstrumentManager()
+
+class InstrumentManager:
+    def __init__(self):
+        self.instruments = {}
+
+    def add(self, name, itype):
+        self.instruments[name] = globals()[itype]()
+
+    def has(self, name):
+        return name in self.instruments
+
+    def get(self, name):
+        return self.instruments[name]
+
+    @property
+    def count(self):
+        return len(self.instruments)
+
+class Instrument:
+    pass
+
+class Base(Instrument):
+    pass
+
+class Guitar(Instrument):
+    pass
+
+class Drum(Instrument):
+    pass
+
 
 class ChordManager:
     def __init__(self):

@@ -116,3 +116,34 @@ class TestSongCompose(unittest.TestCase):
         section.chord.progress("Am")
         self.assertEqual(section.chord.next(), "Am")
         self.assertEqual(section.chord.progression, ["FM7","G7","Em7","Am"])
+
+    def test_section_setting_instrument(self):
+        """
+        Sectionに楽器を追加できること
+        """
+        import compose_set
+        section = compose_set.Section()
+        # Guitar 1と言う名前の楽器を追加できること
+        section.instrument.add(name="Guitar 1", itype="Guitar")
+        self.assertTrue(section.instrument.has("Guitar 1"))
+        self.assertTrue(type(section.instrument.get("Guitar 1")), compose_set.Instrument)
+        self.assertIsInstance(section.instrument.get("Guitar 1"), compose_set.Guitar)
+
+        # MyBaseと言う名前の楽器を追加できること
+        section.instrument.add(name="My Base", itype="Base")
+        self.assertTrue(section.instrument.has("My Base"))
+        self.assertTrue(type(section.instrument.get("My Base")), compose_set.Instrument)
+        self.assertIsInstance(section.instrument.get("My Base"), compose_set.Base)
+
+        # FavoriteDrumと言う名前の楽器を追加できること
+        section.instrument.add(name="Favorite Drum", itype="Drum")
+        self.assertTrue(section.instrument.has("Favorite Drum"))
+        self.assertTrue(type(section.instrument.get("Favorite Drum")), compose_set.Instrument)
+        self.assertIsInstance(section.instrument.get("Favorite Drum"), compose_set.Drum)
+
+        # ３点測量
+        self.assertFalse(section.instrument.has("Voval melody"))
+        with self.assertRaises(KeyError):
+            self.assertFalse(section.instrument.get("Voval melody"))
+        self.assertEqual(section.instrument.count, 3)
+
