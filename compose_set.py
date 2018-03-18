@@ -70,4 +70,4 @@ class ChordManager:
 class Beat:
     def __init__(self, name="Unknow Beat"):
         self.name = name
-
+        self.instrument = InstrumentManager()
