@@ -5,50 +5,50 @@ class TestSongCompose(unittest.TestCase):
         """
         パッケージがimportできること
         """
-        import compose_set
-        self.assertTrue(compose_set)
+        import compose
+        self.assertTrue(compose)
 
     def test_create_song(self):
         """
         曲を作れること
         """
-        import compose_set
-        song = compose_set.Song()
+        import compose
+        song = compose.Song()
         self.assertTrue(song)
 
     def test_create_song_instance(self):
         """
         作った曲がSongインスタンスであること
         """
-        import compose_set
-        song = compose_set.Song()
-        self.assertIsInstance(song, compose_set.Song)
+        import compose
+        song = compose.Song()
+        self.assertIsInstance(song, compose.Song)
 
     def test_create_song_with_name(self):
         """
         作った曲に名前をつけられること
         """
-        import compose_set
+        import compose
         song_name = "作った曲の名前"
-        song = compose_set.Song(song_name)
+        song = compose.Song(song_name)
         self.assertEqual(song.name, song_name)
 
     def test_create_song_with_name(self):
         """
         作った曲にテーマを設定できること
         """
-        import compose_set
+        import compose
         song_name = "作った曲の名前"
         song_thema = "この曲のテーマ"
-        song = compose_set.Song(name=song_name,thema=song_thema)
+        song = compose.Song(name=song_name,thema=song_thema)
         self.assertEqual(song.thema, song_thema)
 
     def test_add_section(self):
         """
         曲の中にセクションを追加できること
         """
-        import compose_set
-        song = compose_set.Song()
+        import compose
+        song = compose.Song()
         self.assertFalse(song.section)
         song.add_section()
         self.assertTrue(song.section)
@@ -57,25 +57,25 @@ class TestSongCompose(unittest.TestCase):
         """
         曲の中に追加したセクションのインスタンスが、Sectionであること
         """
-        import compose_set
-        song = compose_set.Song()
+        import compose
+        song = compose.Song()
         song.add_section()
-        self.assertIsInstance(song.section[0], compose_set.Section)
+        self.assertIsInstance(song.section[0], compose.Section)
 
     def test_create_section(self):
         """
         Sectionを単体で作成できること
         """
-        import compose_set
-        section = compose_set.Section()
-        self.assertIsInstance(section, compose_set.Section)
+        import compose
+        section = compose.Section()
+        self.assertIsInstance(section, compose.Section)
 
     def test_section_setting_measure(self):
         """
         Sectionに小節数を設定できること
         """
-        import compose_set
-        section = compose_set.Section()
+        import compose
+        section = compose.Section()
         self.assertEqual(section.measure, 8)
         section.measure = 4
         self.assertEqual(section.measure, 4)
@@ -84,8 +84,8 @@ class TestSongCompose(unittest.TestCase):
         """
         Sectionに盛り上がり度合いを設定できること
         """
-        import compose_set
-        section = compose_set.Section()
+        import compose
+        section = compose.Section()
         self.assertEqual(section.elevation, 5)
         section.elevation = 10
         self.assertEqual(section.elevation, 10)
@@ -94,19 +94,19 @@ class TestSongCompose(unittest.TestCase):
         """
         Sectionにビートを設定できること
         """
-        import compose_set
-        section = compose_set.Section()
-        self.assertIsInstance(section.beat, compose_set.Beat)
+        import compose
+        section = compose.Section()
+        self.assertIsInstance(section.beat, compose.Beat)
         beat_name = "ビートの名前"
-        section.beat = compose_set.Beat(name=beat_name)
+        section.beat = compose.Beat(name=beat_name)
         self.assertEqual(section.beat.name, beat_name)
 
     def test_section_setting_chrod(self):
         """
         Sectionにコード進行を入力できること
         """
-        import compose_set
-        section = compose_set.Section()
+        import compose
+        section = compose.Section()
         section.chord.progress(chord="FM7")
         self.assertEqual(section.chord.next(), "FM7")
         section.chord.progress(chord="G7")
@@ -121,8 +121,8 @@ class TestSongCompose(unittest.TestCase):
         """
         Sectionに楽器を追加できること
         """
-        import compose_set
-        section = compose_set.Section()
+        import compose
+        section = compose.Section()
         # Guitar 1と言う名前の楽器を追加できること
         section.instrument.add(name="Guitar 1", itype="Guitar")
         self.assertTrue(section.instrument.has("Guitar 1"))
@@ -148,8 +148,8 @@ class TestSongCompose(unittest.TestCase):
         """
         ビートに楽器を設定できること
         """
-        import compose_set
-        beat = compose_set.Beat()
+        import compose
+        beat = compose.Beat()
 
         # Guitar 1と言う名前の楽器を追加できること
         beat.instrument.add(name="Guitar 1", itype="Guitar")
@@ -176,9 +176,9 @@ class TestSongCompose(unittest.TestCase):
         """
         ビートにテンプレートを選ぶと楽器が選択されている
         """
-        import compose_set
+        import compose
         # My Test Templateと言うテンプレートには、3つのテンプレートを含める
-        beat = compose_set.Beat(template="My Test Template")
+        beat = compose.Beat(template="My Test Template")
         self.assertTrue(beat.instrument.has("Guitar 1"))
         self.assertTrue(beat.instrument.has("My Base"))
         self.assertTrue(beat.instrument.has("Favorite Drum"))
@@ -192,9 +192,9 @@ class TestSongCompose(unittest.TestCase):
         ビートにテンプレートを選ぶと楽器が選択されている
         別パターン
         """
-        import compose_set
+        import compose
         # My Test Template2と言うテンプレートには、1つのテンプレートを含める
-        beat = compose_set.Beat(template="My Test Template2")
+        beat = compose.Beat(template="My Test Template2")
         self.assertEqual(len(beat.instruments), 1)
         self.assertTrue(beat.instrument.has("Drums"))
         self.assertTrue("Favorite Drum", beat.instruments)
@@ -203,8 +203,8 @@ class TestSongCompose(unittest.TestCase):
         """
         ビートに設定されている楽器を別の楽器に切り替える
         """
-        import compose_set
-        beat = compose_set.Beat(template="My Test Template2")
+        import compose
+        beat = compose.Beat(template="My Test Template2")
         self.assertEqual(beat.instrument.get("Drums").itype, "Drum")
         beat.instrument.get("Drums").itype = "Guitar"
         self.assertEqual(beat.instrument.get("Drums").itype, "Guitar")
@@ -213,16 +213,16 @@ class TestSongCompose(unittest.TestCase):
         """
         曲に対してテンポを設定する
         """
-        import compose_set
-        song = compose_set.Song(tempo=172)
+        import compose
+        song = compose.Song(tempo=172)
         self.assertEqual(song.tempo, 172)
 
     def test_song_change_tempo(self):
         """
         曲に対してテンポを変更する
         """
-        import compose_set
-        song = compose_set.Song()
+        import compose
+        song = compose.Song()
         self.assertEqual(song.tempo, 120)
         song.tempo = 160
         self.assertEqual(song.tempo, 160)
@@ -231,16 +231,16 @@ class TestSongCompose(unittest.TestCase):
         """
         曲に対してキーを設定する
         """
-        import compose_set
-        song = compose_set.Song(key="D")
+        import compose
+        song = compose.Song(key="D")
         self.assertEqual(song.key, 'D')
 
     def test_song_change_key(self):
         """
         曲に対してキーを変更する
         """
-        import compose_set
-        song = compose_set.Song()
+        import compose
+        song = compose.Song()
         self.assertEqual(song.key, 'C')
         song.key = 'E'
         self.assertEqual(song.key, 'E')
@@ -249,16 +249,16 @@ class TestSongCompose(unittest.TestCase):
         """
         セクションに対してキーを設定する
         """
-        import compose_set
-        section = compose_set.Section(key="D")
+        import compose
+        section = compose.Section(key="D")
         self.assertEqual(section.key, 'D')
 
     def test_section_change_key(self):
         """
         セクションに対してキーを変更する
         """
-        import compose_set
-        section = compose_set.Section()
+        import compose
+        section = compose.Section()
         self.assertEqual(section.key, 'C')
         section.key = 'E'
         self.assertEqual(section.key, 'E')
@@ -267,8 +267,8 @@ class TestSongCompose(unittest.TestCase):
         """
         セクションのデフォルトキーは曲のキーにしたい
         """
-        import compose_set
-        song = compose_set.Song(key='F')
+        import compose
+        song = compose.Song(key='F')
         song.add_section()
         self.assertEqual(song.section[0].key, 'F')
 
@@ -276,8 +276,8 @@ class TestSongCompose(unittest.TestCase):
         """
         Sectionにコード進行を数字で入力できること
         """
-        import compose_set
-        section = compose_set.Section()
+        import compose
+        section = compose.Section()
         section.chord.progress(root=4)
         self.assertEqual(section.chord.next(), "F")
         section.chord.progress(root=5)
