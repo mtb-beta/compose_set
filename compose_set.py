@@ -3,12 +3,14 @@ class Song:
             self,
             name="Unknown Song",
             thema="UnKnown",
-            tempo=120
+            tempo=120,
+            key='C'
         ):
         self.name = name
         self.thema = thema
         self.section = []
         self.tempo = tempo
+        self.key = key
 
     def add_section(self):
         self.section.append(Section())

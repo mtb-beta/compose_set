@@ -227,4 +227,22 @@ class TestSongCompose(unittest.TestCase):
         song.tempo = 160
         self.assertEqual(song.tempo, 160)
 
+    def test_song_setting_key(self):
+        """
+        曲に対してキーを設定する
+        """
+        import compose_set
+        song = compose_set.Song(key="D")
+        self.assertEqual(song.key, 'D')
+
+    def test_song_change_key(self):
+        """
+        曲に対してキーを変更する
+        """
+        import compose_set
+        song = compose_set.Song()
+        self.assertEqual(song.key, 'C')
+        song.key = 'E'
+        self.assertEqual(song.key, 'E')
+
 
