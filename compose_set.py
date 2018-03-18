@@ -16,10 +16,15 @@ class Song:
         self.section.append(Section())
 
 class Section:
-    def __init__(self, name="Unknown Section"):
+    def __init__(
+            self,
+            name="Unknown Section",
+            key="C"
+        ):
         self.name = name
         self.elevation = 5
         self.measure = 8
+        self.key = key
         self.beat = Beat()
         self.chord = ChordManager()
         self.instrument = InstrumentManager()

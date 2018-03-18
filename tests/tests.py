@@ -245,4 +245,22 @@ class TestSongCompose(unittest.TestCase):
         song.key = 'E'
         self.assertEqual(song.key, 'E')
 
+    def test_section_setting_key(self):
+        """
+        セクションに対してキーを設定する
+        """
+        import compose_set
+        section = compose_set.Section(key="D")
+        self.assertEqual(section.key, 'D')
+
+    def test_section_change_key(self):
+        """
+        セクションに対してキーを変更する
+        """
+        import compose_set
+        section = compose_set.Section()
+        self.assertEqual(section.key, 'C')
+        section.key = 'E'
+        self.assertEqual(section.key, 'E')
+
 
