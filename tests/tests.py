@@ -208,3 +208,23 @@ class TestSongCompose(unittest.TestCase):
         self.assertEqual(beat.instrument.get("Drums").itype, "Drum")
         beat.instrument.get("Drums").itype = "Guitar"
         self.assertEqual(beat.instrument.get("Drums").itype, "Guitar")
+
+    def test_song_setting_tempo(self):
+        """
+        曲に対してテンポを設定する
+        """
+        import compose_set
+        song = compose_set.Song(tempo=172)
+        self.assertEqual(song.tempo, 172)
+
+    def test_song_change_tempo(self):
+        """
+        曲に対してテンポを変更する
+        """
+        import compose_set
+        song = compose_set.Song()
+        self.assertEqual(song.tempo, 120)
+        song.tempo = 160
+        self.assertEqual(song.tempo, 160)
+
+

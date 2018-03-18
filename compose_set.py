@@ -2,11 +2,13 @@ class Song:
     def __init__(
             self,
             name="Unknown Song",
-            thema="UnKnown"
+            thema="UnKnown",
+            tempo=120
         ):
         self.name = name
         self.thema = thema
         self.section = []
+        self.tempo = tempo
 
     def add_section(self):
         self.section.append(Section())
