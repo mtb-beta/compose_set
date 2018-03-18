@@ -13,7 +13,7 @@ class Song:
         self.key = key
 
     def add_section(self):
-        self.section.append(Section())
+        self.section.append(Section(key=self.key))
 
 class Section:
     def __init__(
