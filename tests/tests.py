@@ -171,3 +171,30 @@ class TestSongCompose(unittest.TestCase):
         with self.assertRaises(KeyError):
             self.assertFalse(beat.instrument.get("Voval melody"))
         self.assertEqual(beat.instrument.count, 3)
+
+    def test_beat_setting_instrument(self):
+        """
+        ビートにテンプレートを選ぶと楽器が選択されている
+        """
+        import compose_set
+        # My Test Templateと言うテンプレートには、3つのテンプレートを含める
+        beat = compose_set.Beat(template="My Test Template")
+        self.assertTrue(beat.instrument.has("Guitar 1"))
+        self.assertTrue(beat.instrument.has("My Base"))
+        self.assertTrue(beat.instrument.has("Favorite Drum"))
+        self.assertTrue("Guitar 1", beat.instruments)
+        self.assertTrue("My Base", beat.instruments)
+        self.assertTrue("Favorite Drume", beat.instruments)
+        self.assertEqual(beat.instrument.count, 3)
+
+    def test_beat_setting_instrument_other(self):
+        """
+        ビートにテンプレートを選ぶと楽器が選択されている
+        別パターン
+        """
+        import compose_set
+        # My Test Template2と言うテンプレートには、1つのテンプレートを含める
+        beat = compose_set.Beat(template="My Test Template2")
+        self.assertEqual(len(beat.instruments), 1)
+        self.assertTrue(beat.instrument.has("Drums"))
+        self.assertTrue("Favorite Drum", beat.instruments)

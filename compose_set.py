@@ -68,6 +68,17 @@ class ChordManager:
         return self.chord_progression
 
 class Beat:
-    def __init__(self, name="Unknow Beat"):
+    def __init__(self, name="Unknow Beat", template=None):
         self.name = name
         self.instrument = InstrumentManager()
+        if template == "My Test Template":
+            self.instrument.add(name="Guitar 1", itype="Guitar")
+            self.instrument.add(name="My Base", itype="Base")
+            self.instrument.add(name="Favorite Drum", itype="Drum")
+        elif template == "My Test Template2":
+            self.instrument.add(name="Drums", itype="Drum")
+            
+
+    @property
+    def instruments(self):
+        return self.instrument.instruments
