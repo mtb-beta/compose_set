@@ -25,7 +25,7 @@ class InstrumentManager:
         self.instruments = {}
 
     def add(self, name, itype):
-        self.instruments[name] = globals()[itype]()
+        self.instruments[name] = Instrument(itype=itype)
 
     def has(self, name):
         return name in self.instruments
@@ -38,17 +38,8 @@ class InstrumentManager:
         return len(self.instruments)
 
 class Instrument:
-    pass
-
-class Base(Instrument):
-    pass
-
-class Guitar(Instrument):
-    pass
-
-class Drum(Instrument):
-    pass
-
+    def __init__(self, itype):
+        self.itype = itype
 
 class ChordManager:
     def __init__(self):
@@ -77,7 +68,6 @@ class Beat:
             self.instrument.add(name="Favorite Drum", itype="Drum")
         elif template == "My Test Template2":
             self.instrument.add(name="Drums", itype="Drum")
-            
 
     @property
     def instruments(self):

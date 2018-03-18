@@ -126,17 +126,17 @@ class TestSongCompose(unittest.TestCase):
         # Guitar 1と言う名前の楽器を追加できること
         section.instrument.add(name="Guitar 1", itype="Guitar")
         self.assertTrue(section.instrument.has("Guitar 1"))
-        self.assertIsInstance(section.instrument.get("Guitar 1"), compose_set.Guitar)
+        self.assertEqual(section.instrument.get("Guitar 1").itype, "Guitar")
 
         # MyBaseと言う名前の楽器を追加できること
         section.instrument.add(name="My Base", itype="Base")
         self.assertTrue(section.instrument.has("My Base"))
-        self.assertIsInstance(section.instrument.get("My Base"), compose_set.Base)
+        self.assertEqual(section.instrument.get("My Base").itype, "Base")
 
         # FavoriteDrumと言う名前の楽器を追加できること
         section.instrument.add(name="Favorite Drum", itype="Drum")
         self.assertTrue(section.instrument.has("Favorite Drum"))
-        self.assertIsInstance(section.instrument.get("Favorite Drum"), compose_set.Drum)
+        self.assertEqual(section.instrument.get("Favorite Drum").itype, "Drum")
 
         # ３点測量
         self.assertFalse(section.instrument.has("Voval melody"))
@@ -154,17 +154,17 @@ class TestSongCompose(unittest.TestCase):
         # Guitar 1と言う名前の楽器を追加できること
         beat.instrument.add(name="Guitar 1", itype="Guitar")
         self.assertTrue(beat.instrument.has("Guitar 1"))
-        self.assertIsInstance(beat.instrument.get("Guitar 1"), compose_set.Guitar)
+        self.assertEqual(beat.instrument.get("Guitar 1").itype, "Guitar")
 
         # MyBaseと言う名前の楽器を追加できること
         beat.instrument.add(name="My Base", itype="Base")
         self.assertTrue(beat.instrument.has("My Base"))
-        self.assertIsInstance(beat.instrument.get("My Base"), compose_set.Base)
+        self.assertEqual(beat.instrument.get("My Base").itype, "Base")
 
         # FavoriteDrumと言う名前の楽器を追加できること
         beat.instrument.add(name="Favorite Drum", itype="Drum")
         self.assertTrue(beat.instrument.has("Favorite Drum"))
-        self.assertIsInstance(beat.instrument.get("Favorite Drum"), compose_set.Drum)
+        self.assertEqual(section.instrument.get("Favorite Drum").itype, "Drum")
 
         # ３点測量
         self.assertFalse(beat.instrument.has("Voval melody"))
@@ -198,3 +198,13 @@ class TestSongCompose(unittest.TestCase):
         self.assertEqual(len(beat.instruments), 1)
         self.assertTrue(beat.instrument.has("Drums"))
         self.assertTrue("Favorite Drum", beat.instruments)
+
+    def test_beat_setting_instrument_other(self):
+        """
+        ビートに設定されている楽器を別の楽器に切り替える
+        """
+        import compose_set
+        beat = compose_set.Beat(template="My Test Template2")
+        self.assertEqual(beat.instrument.get("Drums").itype, "Drum")
+        beat.instrument.get("Drums").itype = "Guitar"
+        self.assertEqual(beat.instrument.get("Drums").itype, "Guitar")
