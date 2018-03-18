@@ -107,13 +107,13 @@ class TestSongCompose(unittest.TestCase):
         """
         import compose_set
         section = compose_set.Section()
-        section.chord.progress("FM7")
+        section.chord.progress(chord="FM7")
         self.assertEqual(section.chord.next(), "FM7")
-        section.chord.progress("G7")
+        section.chord.progress(chord="G7")
         self.assertEqual(section.chord.next(), "G7")
-        section.chord.progress("Em7")
+        section.chord.progress(chord="Em7")
         self.assertEqual(section.chord.next(), "Em7")
-        section.chord.progress("Am")
+        section.chord.progress(chord="Am")
         self.assertEqual(section.chord.next(), "Am")
         self.assertEqual(section.chord.progression, ["FM7","G7","Em7","Am"])
 
@@ -271,3 +271,36 @@ class TestSongCompose(unittest.TestCase):
         song = compose_set.Song(key='F')
         song.add_section()
         self.assertEqual(song.section[0].key, 'F')
+
+    def test_section_setting_chrod_by_number(self):
+        """
+        Sectionにコード進行を数字で入力できること
+        """
+        import compose_set
+        section = compose_set.Section()
+        section.chord.progress(root=4)
+        self.assertEqual(section.chord.next(), "F")
+        section.chord.progress(root=5)
+        self.assertEqual(section.chord.next(), "G7")
+        section.chord.progress(root=3)
+        self.assertEqual(section.chord.next(), "Em7")
+        section.chord.progress(root=6)
+        self.assertEqual(section.chord.next(), "Am7")
+        section.chord.progress(root=1)
+        self.assertEqual(section.chord.next(), "C")
+        section.chord.progress(root=2)
+        self.assertEqual(section.chord.next(), "Dm7")
+        section.chord.progress(root=7)
+        self.assertEqual(section.chord.next(), "Bm7(-5)")
+        self.assertEqual(
+            section.chord.progression,
+            [
+                "F",
+                "G7",
+                "Em7",
+                "Am7",
+                'C',
+                'Dm7',
+                'Bm7(-5)'
+            ]
+        )

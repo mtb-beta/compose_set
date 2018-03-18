@@ -26,7 +26,7 @@ class Section:
         self.measure = 8
         self.key = key
         self.beat = Beat()
-        self.chord = ChordManager()
+        self.chord = ChordManager(key=self.key)
         self.instrument = InstrumentManager()
 
 class InstrumentManager:
@@ -51,21 +51,42 @@ class Instrument:
         self.itype = itype
 
 class ChordManager:
-    def __init__(self):
+    def __init__(self, key="C"):
         self.step = 0
         self.chord_progression = []
+        self.key = key
 
-    def progress(self, chord):
-        self.chord_progression.append(chord)
+    def progress(self, chord=None, root=1):
+        if chord:
+            self.chord_progression.append(chord)
+        else:
+            self.chord_progression.append(self.diatonic_code(root))
 
     def next(self):
         next_chord = self.chord_progression[self.step]
         self.step += 1
         return next_chord
 
+    def diatonic_code(self, root):
+        if root == 1:
+            return 'C'
+        elif root == 2:
+            return 'Dm7'
+        elif root == 3:
+            return 'Em7'
+        elif root == 4:
+            return 'F'
+        elif root == 5:
+            return 'G7'
+        elif root == 6:
+            return 'Am7'
+        elif root == 7:
+            return 'Bm7(-5)'
+
     @property
     def progression(self):
         return self.chord_progression
+
 
 class Beat:
     def __init__(self, name="Unknow Beat", template=None):
