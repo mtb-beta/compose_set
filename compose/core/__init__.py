@@ -1,6 +1,6 @@
 import enum
 
-
+@enum.unique
 class ChromaticScale(enum.Enum):
     """
     クロマチックスケール
@@ -42,4 +42,10 @@ class Scale:
         # numberで指定された度数だけずらす。同じノートが1度なので-1する
         note = (self.scale_type[number] + self.offset)%12
         return ChromaticScale(note)
+
+    @property
+    def notes(self):
+        return [ note.name for note in ChromaticScale] 
+
+
 

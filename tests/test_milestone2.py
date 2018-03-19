@@ -351,3 +351,51 @@ class TestMileStone2(unittest.TestCase):
         scale = compose.core.Scale(key="B")
         note = scale.note(5)
         self.assertEqual(note.name, 'F_')
+
+    def test_get_note_list_in_C_majar_scale(self):
+        """
+        あるキーのメジャースケールの音階がわかる
+        C メジャースケールの場合
+        """
+        import compose.core
+        scale = compose.core.Scale(key="C")
+        notes = scale.notes
+        self.assertIn('C', notes)
+        self.assertIn('D', notes)
+        self.assertIn('E', notes)
+        self.assertIn('F', notes)
+        self.assertIn('G', notes)
+        self.assertIn('A', notes)
+        self.assertIn('B', notes)
+
+    def test_get_note_list_in_C__majar_scale(self):
+        """
+        あるキーのメジャースケールの音階がわかる
+        C# メジャースケールの場合
+        """
+        import compose.core
+        scale = compose.core.Scale(key="C_")
+        notes = scale.notes
+        self.assertIn('C_', notes)
+        self.assertIn('D_', notes)
+        self.assertIn('F', notes)
+        self.assertIn('F_', notes)
+        self.assertIn('G_', notes)
+        self.assertIn('A_', notes)
+        self.assertIn('C', notes)
+
+    def test_get_note_list_in_G__majar_scale(self):
+        """
+        あるキーのメジャースケールの音階がわかる
+        G# メジャースケールの場合
+        """
+        import compose.core
+        scale = compose.core.Scale(key="G_")
+        notes = scale.notes
+        self.assertIn('G_', notes)
+        self.assertIn('A_', notes)
+        self.assertIn('C', notes)
+        self.assertIn('C_', notes)
+        self.assertIn('D_', notes)
+        self.assertIn('F', notes)
+        self.assertIn('G', notes)
