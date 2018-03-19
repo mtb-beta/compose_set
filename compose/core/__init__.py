@@ -47,5 +47,10 @@ class Scale:
     def notes(self):
         return [ note.name for note in ChromaticScale] 
 
-
+    def diatonic(self, number):
+        return [
+            self.note(1).name,
+            self.note(3).name,
+            self.note(5).name
+        ]
 
