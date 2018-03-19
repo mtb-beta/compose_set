@@ -33,7 +33,7 @@ class TestSongCompose(unittest.TestCase):
         song = compose.Song(song_name)
         self.assertEqual(song.name, song_name)
 
-    def test_create_song_with_name(self):
+    def test_create_song_setting_name(self):
         """
         作った曲にテーマを設定できること
         """
@@ -199,7 +199,7 @@ class TestSongCompose(unittest.TestCase):
         self.assertTrue(beat.instrument.has("Drums"))
         self.assertTrue("Favorite Drum", beat.instruments)
 
-    def test_beat_setting_instrument_other(self):
+    def test_beat_setting_instrument_change(self):
         """
         ビートに設定されている楽器を別の楽器に切り替える
         """
