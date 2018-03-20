@@ -49,8 +49,8 @@ class Scale:
 
     def diatonic(self, number):
         return [
-            self.note(1).name,
-            self.note(3).name,
-            self.note(5).name
+            self.note(number).name,
+            self.note(number+2).name,
+            self.note(number+4).name
         ]
 

@@ -436,3 +436,38 @@ class TestMileStone2(unittest.TestCase):
         self.assertIn('G_', chord)
         self.assertIn('B', chord)
 
+    def test_diatonic_chord_2nd_in_C(self):
+        """
+        あるキーのダイアトニックコードの2番目のコードの構成音がわかる
+        C メジャースケールの場合
+        """
+        import compose.core
+        scale = compose.core.Scale(key='C')
+        chord = scale.diatonic(2)
+        self.assertIn('D', chord)
+        self.assertIn('F', chord)
+        self.assertIn('A', chord)
+
+    def test_diatonic_chord_2nd_in_D(self):
+        """
+        あるキーのダイアトニックコードの2番目のコードの構成音がわかる
+        D メジャースケールの場合
+        """
+        import compose.core
+        scale = compose.core.Scale(key='D')
+        chord = scale.diatonic(2)
+        self.assertIn('E', chord)
+        self.assertIn('G', chord)
+        self.assertIn('B', chord)
+
+    def test_diatonic_chord_2nd_in_E(self):
+        """
+        あるキーのダイアトニックコードの2番目のコードの構成音がわかる
+        E メジャースケールの場合
+        """
+        import compose.core
+        scale = compose.core.Scale(key='E')
+        chord = scale.diatonic(2)
+        self.assertIn('F_', chord)
+        self.assertIn('A', chord)
+        self.assertIn('C_', chord)
