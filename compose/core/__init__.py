@@ -39,8 +39,8 @@ class Scale:
     def note(self, number):
         # キーがずれている数だけオフセットを設定する
         self.offset = ChromaticScale[self.key].value
-        # numberで指定された度数だけずらす。同じノートが1度なので-1する
-        note = (self.scale_type[number] + self.offset)%12
+        # numberで指定された度数だけずらす。
+        note = (self.scale_type[number] + self.offset) % 12
         return ChromaticScale(note)
 
     @property
@@ -48,9 +48,12 @@ class Scale:
         return [ note.name for note in ChromaticScale] 
 
     def diatonic(self, number):
+        # 1~に納めるために一時的にnumberを-1して後で足している。
+        number = number - 1
+        diatonic_num = len(self.scale_type)
         return [
-            self.note(number).name,
-            self.note(number+2).name,
-            self.note(number+4).name
+            self.note((number) % diatonic_num + 1).name,
+            self.note((number + 2 ) % diatonic_num + 1).name,
+            self.note((number + 4 ) % diatonic_num + 1).name
         ]
 

@@ -507,3 +507,15 @@ class TestMileStone2(unittest.TestCase):
         self.assertIn('G_', chord)
         self.assertIn('B', chord)
         self.assertIn('D_', chord)
+
+    def test_diatonic_chord_4th_in_C(self):
+        """
+        あるキーのダイアトニックコードの4番目のコードの構成音がわかる
+        C メジャースケールの場合
+        """
+        import compose.core
+        scale = compose.core.Scale(key='C')
+        chord = scale.diatonic(4)
+        self.assertIn('F', chord)
+        self.assertIn('A', chord)
+        self.assertIn('C', chord)
