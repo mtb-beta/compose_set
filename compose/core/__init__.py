@@ -64,4 +64,17 @@ class Chord:
 
     @property
     def name(self):
-        return self.root
+        if self.has_minor_3rd():
+            return "{}m".format(self.root)
+        else:
+            return self.root
+
+    def has_minor_3rd(self):
+        """
+        短３度が含まれているか
+        """
+        for tone in self.tones:
+            distance = (ChromaticScale[tone].value - ChromaticScale[self.root].value)%12
+            if distance == 3:
+                return True
+

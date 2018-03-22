@@ -589,4 +589,39 @@ class TestMileStone2(unittest.TestCase):
         chord = compose.core.Chord(tones=chord_tones, root=scale.note(5).name)
         self.assertEqual('G', chord.name)
 
+    def test_get_minor_chord_name_Am(self):
+        """
+        ３和音がマイナーコードだった場合、コード名に変換できる
+        Amコード
+        """
+        import compose.core
+        scale = compose.core.Scale(key='C')
+        chord_tones = scale.diatonic(6)
+        chord = compose.core.Chord(tones=chord_tones, root=scale.note(6).name)
+        self.assertEqual('Am', chord.name)
+
+    def test_get_minor_chord_name_Em(self):
+        """
+        ３和音がマイナーコードだった場合、コード名に変換できる
+        Emコード
+        """
+        import compose.core
+        scale = compose.core.Scale(key='C')
+        chord_tones = scale.diatonic(3)
+        chord = compose.core.Chord(tones=chord_tones, root=scale.note(3).name)
+        self.assertEqual('Em', chord.name)
+
+    def test_get_minor_chord_name_Am(self):
+        """
+        ３和音がマイナーコードだった場合、コード名に変換できる
+        Cmコード
+        """
+        import compose.core
+        scale = compose.core.Scale(key='D_')
+        chord_tones = scale.diatonic(6)
+        chord = compose.core.Chord(tones=chord_tones, root=scale.note(6).name)
+        self.assertEqual('Cm', chord.name)
+
+
+
 
