@@ -555,3 +555,38 @@ class TestMileStone2(unittest.TestCase):
         self.assertIn('B', chord)
         self.assertIn('D', chord)
         self.assertIn('F', chord)
+
+    def test_get_majar_chord_name_C(self):
+        """
+        ３和音がメジャーコードだった場合、コード名に変換できる
+        Cコード
+        """
+        import compose.core
+        scale = compose.core.Scale(key='C')
+        chord_tones = scale.diatonic(1)
+        chord = compose.core.Chord(tones=chord_tones, root=scale.note(1).name)
+        self.assertEqual('C', chord.name)
+
+    def test_get_majar_chord_name_F(self):
+        """
+        ３和音がメジャーコードだった場合、コード名に変換できる
+        Fコード
+        """
+        import compose.core
+        scale = compose.core.Scale(key='C')
+        chord_tones = scale.diatonic(4)
+        chord = compose.core.Chord(tones=chord_tones, root=scale.note(4).name)
+        self.assertEqual('F', chord.name)
+
+    def test_get_majar_chord_name_G(self):
+        """
+        ３和音がメジャーコードだった場合、コード名に変換できる
+        Gコード
+        """
+        import compose.core
+        scale = compose.core.Scale(key='C')
+        chord_tones = scale.diatonic(5)
+        chord = compose.core.Chord(tones=chord_tones, root=scale.note(5).name)
+        self.assertEqual('G', chord.name)
+
+

@@ -57,3 +57,11 @@ class Scale:
             self.note((number + 4 ) % diatonic_num + 1).name
         ]
 
+class Chord:
+    def __init__(self, tones, root):
+        self.tones = tones
+        self.root = root
+
+    @property
+    def name(self):
+        return self.root
