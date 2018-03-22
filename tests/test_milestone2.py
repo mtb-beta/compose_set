@@ -543,3 +543,15 @@ class TestMileStone2(unittest.TestCase):
         self.assertIn('A', chord)
         self.assertIn('C', chord)
         self.assertIn('E', chord)
+
+    def test_diatonic_chord_7th_in_C(self):
+        """
+        あるキーのダイアトニックコードの7番目のコードの構成音がわかる
+        C メジャースケールの場合
+        """
+        import compose.core
+        scale = compose.core.Scale(key='C')
+        chord = scale.diatonic(7)
+        self.assertIn('B', chord)
+        self.assertIn('D', chord)
+        self.assertIn('F', chord)
