@@ -15,8 +15,19 @@ def load_csv(path):
 
     return data
 
+def normilize_duration(data):
+    """
+    StartとEndをノーマライズする。
+    1を４分音符にしている。
+    """
+    data.Start.iloc[:] = data.Start.iloc[:] / 2
+    data.End.iloc[:] = data.End.iloc[:] / 2
+    return data
 
 def text_to_midi(text_path, midi_path):
+    """
+    text ファイルをmidiファイルに変換する
+    """
     data = load_csv(text_path)
 
     instrument_track = get_instrument()
