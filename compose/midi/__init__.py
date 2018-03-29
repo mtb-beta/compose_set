@@ -1,6 +1,17 @@
 import pandas as pd
 import pretty_midi
 
+def normalize_duration(data):
+    """
+    StartとEndをノーマライズする。
+    1を４分音符にしている。
+    """
+    norm_tmp = data.copy()
+    data.Start = norm_tmp.Start / 2
+    data.End = norm_tmp.End / 2
+    return data
+
+
 def load_csv(path):
     """
     csv形式のmidiテキストデータを読み込むユーティリティ関数
@@ -15,20 +26,13 @@ def load_csv(path):
 
     return data
 
-def normilize_duration(data):
-    """
-    StartとEndをノーマライズする。
-    1を４分音符にしている。
-    """
-    data.Start.iloc[:] = data.Start.iloc[:] / 2
-    data.End.iloc[:] = data.End.iloc[:] / 2
-    return data
-
 def text_to_midi(text_path, midi_path):
     """
     text ファイルをmidiファイルに変換する
     """
     data = load_csv(text_path)
+
+    data = normalize_duration(data)
 
     instrument_track = get_instrument()
 
