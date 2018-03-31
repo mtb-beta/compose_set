@@ -1,8 +1,11 @@
 attrs==17.4.0
 mido==1.2.8
 numpy==1.14.2
+pandas==0.22.0
 pluggy==0.6.0
 pretty-midi==0.2.8
 py==1.5.2
 pytest==3.4.2
+python-dateutil==2.7.1
+pytz==2018.3
 six==1.11.0
