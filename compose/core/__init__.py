@@ -57,6 +57,15 @@ class Scale:
             self.note((number + 4 ) % diatonic_num + 1).name
         ]
 
+    def diatonic_number(self, note):
+        """
+        ノート名を渡すと、ダイアトニック番号を返す
+        key C で Cを渡すと1が返ってくるような感じ
+        """
+        for key in self.scale_type:
+            if self.scale_type[key] == ChromaticScale[note].value:
+                return key
+
 class Chord:
     def __init__(self, tones, root):
         self.tones = tones
